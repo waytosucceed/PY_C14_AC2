@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        main {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .image-container {
+            position: relative;
+        }
+
+        .fullscreen-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .answer-img {
+            display: none; /* Initially hide the images */
+            width: 100%;
+        }
+
+        .show-answer-btn {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .show-answer-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .goback {
+            padding: 10px;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .goback:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <img src="./logo/Logo.png" alt="Logo" class="logo" />
+        <img src="./logo/header.png" alt="Header" class="header-image" />
+    </header>
+
+    <p style="text-align: center; font-size: 1.7rem; font-weight: bold; margin-bottom: 0;">Challenges</p>
+    
+    <main>
+        <!-- Activity 1 -->
+        <section id="activity1" style="display: flex; flex-direction: column; align-items: center;">
+            <h2>Activity 1: Unique Words</h2>
+            <p style="font-size: 1.2rem;">
+                Write a program to take a paragraph as input from the user and print the unique words in the paragraph.
+            </p>
+            <p style="font-size: 1.2rem;">
+                <strong>Additional Task:</strong> Find the number of times each word has occurred in the paragraph.
+            </p>
+            <button class="show-answer-btn" id="show-answer-btn1">Show Code</button>
+            <div class="image-container">
+                <img src="./images/image2.png" class="answer-img" id="answer-img1" alt="Unique words example">
+                <span class="fullscreen-icon" id="fullscreen-icon1" style="display:none;">⛶</span>
+            </div>
+        </section>
+
+        <!-- Activity 2 -->
+        <section id="activity2" style="display: flex; flex-direction: column; align-items: center;">
+            <h2>Activity 2: Set Operations (Additional Activity)</h2>
+            <p style="font-size: 1.2rem;">
+                Write a program to take 2 sets with 5 fruits each as input from the user. The two sets can have some of the same elements.
+            </p>
+            <p style="font-size: 1.2rem;">
+                Display a menu for all set operations like Union, Intersection, Difference, and Symmetric Difference.
+            </p>
+            <button class="show-answer-btn" id="show-answer-btn2">Show Code</button>
+            <div class="image-container">
+                <img src="./images/image3.png" class="answer-img" id="answer-img2" alt="Set operations example">
+                <span class="fullscreen-icon" id="fullscreen-icon2" style="display:none;">⛶</span>
+            </div>
+            <div class="image-container">
+                <img src="./images/image4.png" class="answer-img" id="answer-img3" alt="Set operations example">
+                <span class="fullscreen-icon" id="fullscreen-icon3" style="display:none;">⛶</span>
+            </div>
+        </section>
+    </main>
+
+    <button class="goback" onclick="window.location.href='index.html'">Go Back</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Activity 1
+            const showAnswerBtn1 = document.getElementById('show-answer-btn1');
+            const img1 = document.getElementById('answer-img1');
+            const icon1 = document.getElementById('fullscreen-icon1');
+
+            // Toggle image visibility for Activity 1
+            showAnswerBtn1.addEventListener('click', function () {
+                if (img1.style.display === 'none' || img1.style.display === '') {
+                    img1.style.display = 'block';
+                    icon1.style.display = 'block'; // Show fullscreen icon for img1
+                    this.textContent = 'Hide Code';
+                } else {
+                    img1.style.display = 'none';
+                    icon1.style.display = 'none'; // Hide fullscreen icon for img1
+                    this.textContent = 'Show Code';
+                }
+            });
+
+            // Fullscreen functionality for Activity 1
+            icon1.addEventListener('click', function () {
+                openFullscreen(img1.src);
+            });
+
+            // Activity 2
+            const showAnswerBtn2 = document.getElementById('show-answer-btn2');
+            const img2 = document.getElementById('answer-img2');
+            const img3 = document.getElementById('answer-img3');
+            const icon2 = document.getElementById('fullscreen-icon2');
+            const icon3 = document.getElementById('fullscreen-icon3');
+
+            // Toggle image visibility for Activity 2
+            showAnswerBtn2.addEventListener('click', function () {
+                if (img2.style.display === 'none' || img2.style.display === '') {
+                    img2.style.display = 'block';
+                    icon2.style.display = 'block'; // Show fullscreen icon for img2
+                    img3.style.display = 'block';
+                    icon3.style.display = 'block'; // Show fullscreen icon for img3
+                    this.textContent = 'Hide Code';
+                } else {
+                    img2.style.display = 'none';
+                    icon2.style.display = 'none'; // Hide fullscreen icon for img2
+                    img3.style.display = 'none';
+                    icon3.style.display = 'none'; // Hide fullscreen icon for img3
+                    this.textContent = 'Show Code';
+                }
+            });
+
+            // Fullscreen functionality for Activity 2
+            icon2.addEventListener('click', function () {
+                openFullscreen(img2.src);
+            });
+
+            icon3.addEventListener('click', function () {
+                openFullscreen(img3.src);
+            });
+
+            // Initially hide the images
+            img1.style.display = 'none';
+            img2.style.display = 'none';
+            img3.style.display = 'none';
+        });
+
+        function openFullscreen(imageSrc) {
+    let fullScreenWindow = window.open("");
+    fullScreenWindow.document.write(`
+        <img src="${imageSrc}" style="display: block; max-width: 100%; max-height: 100vh; margin: auto;">
+    `);
+    fullScreenWindow.document.body.style.margin = "0";
+}
+    </script>
+</body>
+</html>
